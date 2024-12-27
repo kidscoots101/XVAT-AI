@@ -130,7 +130,11 @@ const SingleFileUploader = () => {
             className="upload-btn"
             onClick={status === "success" ? handleDone : handleUpload}
           >
-            {status === "success" ? "Done" : "Upload"}
+            {status === "uploading"
+              ? "Uploading..."
+              : status === "success"
+              ? "Done"
+              : "Upload"}
           </button>
         </div>
       )}
