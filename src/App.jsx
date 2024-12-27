@@ -1,14 +1,12 @@
-import './App.css';
+import React from "react";
+import Sidebar from "./components/Sidebar";
+import SingleFileUploader from "./components/SingleFileUploader";
+import "./App.css";
 
-import SingleFileUploader from './components/SingleFileUploader';
-
-function App() {
+export default function App() {
   return (
-    <>
-      <h1>NexoraAI</h1>
+    <div className="container">
       <SingleFileUploader />
-    </>
+    </div>
   );
 }
-
-export default App;
