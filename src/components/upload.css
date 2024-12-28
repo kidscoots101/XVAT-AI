@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  font-family: "Rubik", "sans-serif";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --body-color: #e4e9f7;
   --sidebar-color: #ffffff;
@@ -11,78 +20,103 @@
   --tran-05: all 0.5s ease;
 }
 
-/* Base styles for responsive design */
 body {
   height: 100vh;
   background: var(--body-color);
   transition: var(--tran-02);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px; /* Relative size for scaling */
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
 }
 
 .home {
   position: relative;
-  width: 90%;
-  max-width: 600px; /* Limit the max width on larger screens */
-  margin: auto;
+  height: 100vh;
+  background: var(--body-color);
   transition: var(--tran-05);
 }
 
 .file-btn {
-  width: 100%;
-  max-width: 530px;
-  height: auto;
-  padding: 20px;
-  font-size: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530px;
+  height: 250px;
+  font-size: 28px;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 25px;
   color: var(--primary-color);
   background-color: var(--sidebar-color);
   border: 3px dashed var(--primary-color);
   border-radius: 20px;
   cursor: pointer;
   transition: var(--tran-03);
-  text-align: center;
+}
+
+.file-btn:hover {
+  color: var(--sidebar-color);
+  background-color: var(--primary-color);
+  border: 3px dashed var(--sidebar-color);
 }
 
 .file-btn i {
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: var(--primary-color-light);
 }
 
 .file-text {
-  font-size: 0.9rem;
+  font-size: 20px;
   font-weight: 200;
 }
 
 .second {
-  width: 100%;
-  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .file-card {
-  width: 100%;
-  max-width: 330px;
+  width: 330px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   color: #000;
   background-color: #fff;
   border: 1px solid rgba(117, 96, 255, 0.201);
   border-radius: 6px;
-  padding: 10px;
-  margin: auto;
+  padding: 8px 15px;
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.file-info h6 {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .progress-bg {
@@ -93,27 +127,75 @@ body {
   margin-top: 8px;
 }
 
+.progress {
+  width: 0%;
+  height: 5px;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  transition: var(--tran-05);
+}
+
+.symbol-icon {
+  font-size: 30px;
+  color: var(--primary-color);
+}
+
+.close-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.file-info button,
+.check-circle {
+  width: 35px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  border: none;
+  border-radius: 30px;
+}
+
 .upload-btn {
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px;
-  margin-top: 10px;
+  width: 330px;
+  font-size: 15px;
+  font-weight: 500;
   color: #fff;
   background-color: var(--primary-color);
   border: none;
   border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
   cursor: pointer;
 }
 
-.info-box {
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 0.9rem;
-  background-color: var(--sidebar-color);
-  border-radius: 6px;
+.dotted-file-button {
+  display: none;
 }
 
-/* Modal styles */
+.second section {
+  margin-top: 20px;
+}
+
+.second ul {
+  list-style-type: none;
+}
+
+.second li {
+  font-size: 14px;
+  font-weight: 400;
+  color: #18191a;
+}
+
+.info-box {
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 10px 15px 10px 15px;
+}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -127,9 +209,11 @@ body {
   z-index: 1000;
 }
 
+.modal-overlay p {
+  color: black;
+}
+
 .modal-content {
-  width: 90%;
-  max-width: 400px;
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -139,44 +223,10 @@ body {
 
 .modal-close-btn {
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   background: red;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-/* Media queries for mobile responsiveness */
-@media (max-width: 768px) {
-  .file-btn {
-    font-size: 0.9rem;
-    gap: 10px;
-    padding: 15px;
-  }
-
-  .file-btn i {
-    width: 35px;
-    height: 35px;
-    font-size: 1.2rem;
-  }
-
-  .file-text {
-    font-size: 0.8rem;
-  }
-
-  .file-card {
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .upload-btn {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
-  .info-box {
-    padding: 8px;
-    font-size: 0.8rem;
-  }
 }
