@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  font-family: "Rubik", "sans-serif";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --body-color: #e4e9f7;
+  --sidebar-color: #ffffff;
+  --primary-color: #0066ff;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #dddddd;
+  --text-color: #707070;
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+body {
+  height: 100vh;
+  background: var(--body-color);
+  transition: var(--tran-02);
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+}
+
+.home {
+  position: relative;
+  height: 100vh;
+  background: var(--body-color);
+  transition: var(--tran-05);
+}
+
+.file-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530px;
+  height: 250px;
+  font-size: 28px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  color: var(--primary-color);
+  background-color: var(--sidebar-color);
+  border: 3px dashed var(--primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--tran-03);
+}
+
+.file-btn:hover {
+  color: var(--sidebar-color);
+  background-color: var(--primary-color);
+  border: 3px dashed var(--sidebar-color);
+}
+
+.file-btn i {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background-color: var(--primary-color-light);
+}
+
+.file-text {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.second {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.file-card {
+  width: 330px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid rgba(117, 96, 255, 0.201);
+  border-radius: 6px;
+  padding: 8px 15px;
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.file-info h6 {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.076);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.progress {
+  width: 0%;
+  height: 5px;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  transition: var(--tran-05);
+}
+
+.symbol-icon {
+  font-size: 30px;
+  color: var(--primary-color);
+}
+
+.close-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.file-info button,
+.check-circle {
+  width: 35px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  border: none;
+  border-radius: 30px;
+}
+
+.upload-btn {
+  width: 330px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.dotted-file-button {
+  display: none;
+}
+
+.second section {
+  margin-top: 20px;
+}
+
+.second ul {
+  list-style-type: none;
+}
+
+.second li {
+  font-size: 14px;
+  font-weight: 400;
+  color: #18191a;
+}
+
+.info-box {
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 10px 15px 10px 15px;
+}
