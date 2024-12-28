@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sidebar.css";
+import "./upload.css";
 
 const SingleFileUploader = () => {
   const [file, setFile] = useState<File | null>(null);
