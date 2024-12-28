@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
 import SingleFileUploader from "./components/SingleFileUploader";
 import "./App.css";
 
