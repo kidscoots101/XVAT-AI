@@ -7,11 +7,23 @@ const SingleFileUploader = () => {
     "initial" | "uploading" | "success" | "fail"
   >("initial");
   const [progress, setProgress] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      const selectedFile = e.target.files[0];
+      const allowedTypes = ["application/pdf"];
+
+      if (!allowedTypes.includes(selectedFile.type)) {
+        setModalMessage("❌ Only PDF files are allowed!");
+        setShowModal(true);
+        setFile(null);
+        return;
+      }
+
+      setFile(selectedFile);
       setStatus("initial");
-      setFile(e.target.files[0]);
     }
   };
 
@@ -88,9 +100,7 @@ const SingleFileUploader = () => {
         >
           <i className="bx bx-export"></i>
           <text className="upload-text">Upload File</text>
-          <text className="file-text">
-            Acceptable file types: .pdf, .jpeg, .jpg
-          </text>
+          <text className="file-text">Acceptable file type: .pdf</text>
         </button>
       )}
 
@@ -138,6 +148,10 @@ const SingleFileUploader = () => {
           </button>
         </div>
       )}
+
+      {showModal && (
+        <Modal message={modalMessage} onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 };
@@ -157,6 +171,25 @@ const Result = ({ status }: { status: string }) => {
   } else {
     return null;
   }
+};
+
+const Modal = ({
+  message,
+  onClose,
+}: {
+  message: string;
+  onClose: () => void;
+}) => {
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <p>{message}</p>
+        <button onClick={onClose} className="modal-close-btn">
+          OK
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default SingleFileUploader;
