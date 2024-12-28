@@ -62,6 +62,13 @@ body.dark {
   border-radius: 20px;
   cursor: pointer;
   transition: var(--tran-03);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .file-btn {
+    max-width: 400px;
+  }
 }
 
 .file-btn:hover {
