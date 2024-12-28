@@ -38,6 +38,7 @@ body.dark {
 .home {
   position: relative;
   height: 100vh;
+  max-width: 600px;
   background: var(--body-color);
   transition: var(--tran-05);
 }

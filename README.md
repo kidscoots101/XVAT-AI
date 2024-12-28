@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## To-do (cross off when done)
 
-- Determine the type of file uploaded (e.g. PDF/JPEG) and reject the wrong file types (e.g. DMG/WAV).
+- ~Determine the type of file uploaded (e.g. PDF/JPEG) and reject the wrong file types (e.g. DMG/WAV).~
 - Set up cloud storage of files.
 - Link AI functionality through the back-end.
 - Add side bar (pain).
