@@ -38,7 +38,6 @@ body.dark {
 .home {
   position: relative;
   height: 100vh;
-  background: var(--body-color);
   transition: var(--tran-05);
 }
 
@@ -166,6 +165,12 @@ body.dark {
   border-radius: 30px;
 }
 
+.upload-text {
+  color: var(--text-color);
+}
+.file-text {
+  color: var(--text-color);
+}
 .upload-btn {
   width: 330px;
   font-size: 15px;
