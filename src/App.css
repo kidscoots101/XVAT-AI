@@ -203,7 +203,7 @@ body {
   background: #0056b3;
 }
 .login-footer {
-  margin-top: 15px;
+  margin-top: 30px;
   font-size: 14px;
   color: #777;
 }
@@ -217,6 +217,78 @@ body {
   text-decoration: underline;
 }
 
+.line-container {
+  display: flex;
+  margin-top:50px;
+  align-items: center;
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.text {
+  margin: 0 10px;
+  color: #666;
+}
+
+.auth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  gap: 15px;
+  transition: var(--tran-03);
+  width: 230px; 
+  margin-top:20px;
+}
+
+.auth-button.google .i,
+.auth-button.facebook .i
+.auth-button.apple .i{
+  height:70px;
+  width:70px;
+  justify-content: start;
+  align-items: center;
+}
+.auth-button.google {
+  background-color: #fff;
+  color: #4285f4;
+  border: 1px solid #4285f4;
+}
+
+.auth-button.google:hover {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.auth-button.facebook {
+  background-color: #3b5998;
+  color: #fff;
+  border: none;
+}
+
+.auth-button.facebook:hover {
+  background-color: #2d4373;
+}
+
+.auth-button.apple{
+  background-color:#fff;
+  color:black;
+  border:1px solid black;
+}
+
+.auth-button.apple:hover{
+  background-color:var(--toggle-color);
+}
 .image-container{
   display:flex;
   justify-content: center;
