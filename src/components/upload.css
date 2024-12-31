@@ -71,7 +71,7 @@ body.dark {
 }
 
 .file-btn:hover {
-  color: var(--sidebar-color);
+  color: white;
   background-color: var(--primary-color);
   border: 3px dashed var(--sidebar-color);
 }
@@ -88,9 +88,30 @@ body.dark {
   background-color: var(--primary-color-light);
 }
 
+body.dark .file-btn i{
+  color:white;
+}
+
+body.dark .file-btn:hover i{
+  background-color:#ddd;
+  color:black;
+  transition:var(--tran-04);
+}
+
 .file-text {
   font-size: 20px;
   font-weight: 200;
+}
+
+.file-btn:hover .file-text,
+.file-btn:hover .upload-text {
+  color:white;
+}
+
+body.dark .file-btn:hover .file-text,
+body.dark .file-btn:hover .upload-text {
+  color:white;
+  transition:var(--tran-04);
 }
 
 .second {
