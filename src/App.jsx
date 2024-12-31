@@ -114,6 +114,12 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    console.log("Remember Me is:", !isChecked ? "Checked" : "Unchecked");
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -127,29 +133,45 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2 className="login-title">Welcome to xvat AI</h2>
-        <p className="login-subtitle">Sign in to your account</p>
+        <h2 className="login-title">LOGIN</h2>
+        <div className="subtitle">
+          <p className="login-subtitle">Do not have an account?</p>
+          <p className="sign-subtitle">Sign Up</p>
+        </div>
         <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
+          <p className="heading">Username</p>
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Enter your username: "
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+          <p className="heading">Password</p>
           <div className="input-group">
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Enter your password: "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+          <div className="remember-me-container">
+            <label className="remember-me-label">
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                className="remember-me-checkbox"
+              />
+              Remember Me
+            </label>
+          </div>
           <button type="submit" className="login-button">
-            Log In
+            LOGIN
           </button>
         </form>
         <p className="login-footer">
