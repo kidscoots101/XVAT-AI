@@ -106,6 +106,7 @@ body.dark .file-btn:hover i{
 .file-btn:hover .file-text,
 .file-btn:hover .upload-text {
   color:white;
+  transition: var(--tran-04);
 }
 
 body.dark .file-btn:hover .file-text,
