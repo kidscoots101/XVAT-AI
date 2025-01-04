@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
 import "./App.css";
+import img from './components/login_image.png';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -177,6 +178,28 @@ const Login = () => {
         <p className="login-footer">
           Forgot your password? <a href="#">Reset it</a>
         </p>
+        <div className="line-container">
+          <div className="line"></div>
+          <span className="text">or login with</span>
+          <div className="line"></div>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+          <div className="auth-button google">
+            <i class="bx bxl-google" alt="Google Logo"/>
+            <span>Google</span>
+          </div>
+          <div className="auth-button facebook">
+            <i class="bx bxl-facebook" alt="Facebook Logo"/>
+            <span>Facebook</span>
+          </div>
+          <div className="auth-button apple">
+            <i class="bx bxl-apple" alt="Apple Logo"/>
+            <span>Apple</span>
+          </div>
+        </div>
+      </div>
+      <div className="image-container">
+        <img src={img} alt="Person Studying Image" className="img_1"/>
       </div>
     </div>
   );
