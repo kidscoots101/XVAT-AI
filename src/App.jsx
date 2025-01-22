@@ -28,8 +28,11 @@ const Sidebar = () => {
   return (
     <nav className={`sidebar ${isSidebarOpen ? "" : "close"}`}>
       <header>
-        <div className="imagetext">
-          <span className="comp_title">XVAT</span>
+        <div className="image-text">
+          <div className="logo-text">
+            <span className="name">XVAT</span>
+            <span className="profession">Student Portal</span>
+          </div>
         </div>
         <i
           className="bx bx-chevron-right toggle"
@@ -38,49 +41,36 @@ const Sidebar = () => {
       </header>
       <div className="menu-bar">
         <div className="menu">
-          <li className="search-box">
-            <i className="bx bx-search icon"></i>
-            <input
-              type="search"
-              placeholder="Search..."
-              style={{ color: "black" }}
-            />
-          </li>
           <ul className="menu-links">
             <li className="nav-link">
               <Link to="/dashboard">
                 <i className="bx bxs-grid-alt icon"></i>
                 <span className="text nav-text">Dashboard</span>
               </Link>
-              <span className="tooltip">Dashboard</span>
             </li>
             <li className="nav-link">
               <Link to="/subjects">
                 <i className="bx bxs-bookmarks icon"></i>
                 <span className="text nav-text">Subjects</span>
               </Link>
-              <span className="tooltip">Subjects</span>
             </li>
             <li className="nav-link">
               <Link to="/progress">
                 <i className="bx bx-bar-chart icon"></i>
                 <span className="text nav-text">Progress</span>
               </Link>
-              <span className="tooltip">Progress</span>
             </li>
             <li className="nav-link">
               <Link to="/quiz">
                 <i className="bx bx-message-alt-edit icon"></i>
                 <span className="text nav-text">Quiz</span>
               </Link>
-              <span className="tooltip">Quiz</span>
             </li>
             <li className="nav-link">
               <Link to="/upload">
                 <i className="bx bxs-file-pdf icon"></i>
                 <span className="text nav-text">Upload</span>
               </Link>
-              <span className="tooltip">Upload</span>
             </li>
           </ul>
         </div>
@@ -92,18 +82,14 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="mode">
-            <div className="moon-sun">
-              {isDarkMode ? (
-                <i className="bx bx-sun icon"></i>
-              ) : (
-                <i className="bx bx-moon icon"></i>
-              )}
+            <div className="sun-moon">
+              <i className={`bx ${isDarkMode ? 'bx-sun' : 'bx-moon'} icon`}></i>
             </div>
             <span className="mode-text text">
               {isDarkMode ? "Light Mode" : "Dark Mode"}
             </span>
             <div className="toggle-switch" onClick={handleDarkModeToggle}>
-              <span className="switch"></span>
+              <span className={`switch ${isDarkMode ? 'switched' : ''}`}></span>
             </div>
           </li>
         </div>
@@ -220,22 +206,22 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="stats-container">
-          <div className="stat-card1">
+          <div className="stat-card stat-card1">
             <div className="stat-title">Upcoming Deadlines</div>
             <div className="stat-value">4</div>
             <div>Next: Math Assignment (2 days)</div>
           </div>
-          <div className="stat-card2">
+          <div className="stat-card stat-card2">
             <div className="stat-title">Study Hours</div>
             <div className="stat-value">50</div>
             <div>+5 from last week</div>
           </div>
-          <div className="stat-card3">
+          <div className="stat-card stat-card3">
             <div className="stat-title">Monthly Budget</div>
             <div className="stat-value">$1200</div>
             <div>$300 remaining</div>
           </div>
-          <div className="stat-card4">
+          <div className="stat-card stat-card4">
             <div className="stat-title">Study Streak</div>
             <div className="stat-value">7 days</div>
             <div>Keep it up!</div>
