@@ -4,6 +4,7 @@ import SingleFileUploader from "./components/SingleFileUploader";
 import "./App.css";
 import img from './components/login_image.png';
 
+
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -125,12 +126,11 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "admin" && password === "password") {
-      navigate("/uploader");
+      navigate("/dashboard");
     } else {
       alert("Invalid credentials. Try again!");
     }
-  };
-
+  };  
   return (
     <div className="login-container">
       <div className="login-card">
@@ -204,83 +204,63 @@ const Login = () => {
     </div>
   );
 };
-const Dashboard = () => {
-  const styles = {
-    home: {
-      padding: "40px 20px",
-      backgroundColor: "#f4f7fc",
-      minHeight: "100vh",
-    },
-    text: {
-      fontSize: "28px",
-      fontWeight: "700",
-      marginBottom: "30px",
-      textAlign: "center",
-      color: "#333",
-      textTransform: "uppercase",
-    },
-    container: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-      gap: "30px",
-      maxWidth: "1200px",
-      margin: "0 auto",
-    },
-    card: {
-      background: "#fff",
-      borderRadius: "12px",
-      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-      padding: "25px",
-      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      border: "1px solid #e5e5e5",
-    },
-    cardHover: {
-      transform: "translateY(-8px)",
-      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
-    },
-    cardTitle: {
-      fontSize: "20px",
-      fontWeight: "600",
-      marginBottom: "15px",
-      color: "#444",
-      letterSpacing: "0.5px",
-    },
-    cardContent: {
-      fontSize: "16px",
-      color: "#666",
-      lineHeight: "1.6",
-    },
-    footer: {
-      marginTop: "60px",
-      textAlign: "center",
-      fontSize: "14px",
-      color: "#aaa",
-    },
-  };
 
+
+const Dashboard = () => {
   return (
-    <section className="home">
-      <div style={styles.text}>Dashboard</div>
-      <div style={styles.container}>
-        <div style={styles.card} className="card">
-          <div style={styles.cardTitle}>Statistics</div>
-          <div style={styles.cardContent}>Placeholder for charts or data</div>
+    <div className="home">
+      <div className="content">
+        <div className="header">
+          <h1>Welcome back, Student!</h1>
+          <div>
+            <button className="button button-primary">New Task</button>
+            <button className="button button-secondary" style={{ marginLeft: "10px" }}>
+              Add to Calendar
+            </button>
+          </div>
         </div>
-        <div style={styles.card} className="card">
-          <div style={styles.cardTitle}>Recent Activities</div>
-          <div style={styles.cardContent}>Placeholder for activity list</div>
+        <div className="stats-container">
+          <div className="stat-card1">
+            <div className="stat-title">Upcoming Deadlines</div>
+            <div className="stat-value">4</div>
+            <div>Next: Math Assignment (2 days)</div>
+          </div>
+          <div className="stat-card2">
+            <div className="stat-title">Study Hours</div>
+            <div className="stat-value">50</div>
+            <div>+5 from last week</div>
+          </div>
+          <div className="stat-card3">
+            <div className="stat-title">Monthly Budget</div>
+            <div className="stat-value">$1200</div>
+            <div>$300 remaining</div>
+          </div>
+          <div className="stat-card4">
+            <div className="stat-title">Study Streak</div>
+            <div className="stat-value">7 days</div>
+            <div>Keep it up!</div>
+          </div>
         </div>
-        <div style={styles.card} className="card">
-          <div style={styles.cardTitle}>Quick Actions</div>
-          <div style={styles.cardContent}>Placeholder for action buttons</div>
+        <div className="assignments">
+          <h2>Current Assignments</h2>
+          <div className="assignment-card">
+            <div>Physics Lab Report</div>
+            <div>Due Tomorrow: 11:59 PM</div>
+          </div>
+          <div className="assignment-card">
+            <div>Economics Presentation</div>
+            <div>Due in 3 days: 3:30 PM</div>
+          </div>
+        </div>
+        <div className="analytics">
+          <h2>Study Analytics</h2>
+          <p>[Interactive Chart Here]</p>
         </div>
       </div>
-      <footer style={styles.footer}>
-        &copy; 2024 XVAT AI, Inc. All rights reserved.
-      </footer>
-    </section>
+    </div>
   );
 };
+
 
 const Subjects = () => (
   <section className="home">
@@ -315,9 +295,9 @@ const AppLayout = () => (
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/*" element={<AppLayout />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/*" element={<AppLayout />} />
+      </Routes>
   );
 }

@@ -311,7 +311,6 @@ body {
   padding: 10px 14px;
   background: var(--sidebar-color);
   transition: var(--tran-05);
-  z-index: 100;
 }
 
 .sidebar.close {
@@ -563,10 +562,13 @@ body.dark .switch::before {
 }
 
 .home {
-  position: relative;
-  left: 250px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position:relative;
+  left:250px;
   height: 100vh;
-  width: calc(100% - 250px);
+  width: calc(100%);
   transition: var(--tran-05);
 }
 
@@ -578,6 +580,117 @@ body.dark .switch::before {
 }
 
 .sidebar.close ~ .home {
-  left: 88px;
-  width: calc(100% - 88px);
+  width: calc(100%);
 }
+
+/* Dashboard */
+.content {
+  padding:30px;
+  flex:1;
+}
+
+/* Header section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+/* Stats container */
+.stats-container {    
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Individual stat card */
+.stat-card1 {
+  padding: 15px 30px;
+  border-radius: 12px;
+  background: linear-gradient(to right, #3569E9, #6087E7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-card2 {
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(to right, #7153C3, #8E71DB);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-card3 {
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(to right,#E49E54,#E9AA61);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.stat-card4 {
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(to right, #6FBE84, #80CE94);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Stat card title */
+.stat-title {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Stat card value */
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Assignments section */
+.assignments {
+  margin-bottom: 40px;
+}
+
+/* Assignment card */
+.assignment-card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+/* Analytics section */
+.analytics {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General button styles */
+.button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Primary button style */
+.button-primary {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* Secondary button style */
+.button-secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
