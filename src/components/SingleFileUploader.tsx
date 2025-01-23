@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./upload.css";
 
+const baseUrl = 'https://sairams-m1pro-system.tail4ef781.ts.net';
+
 const SingleFileUploader = () => {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<
@@ -9,6 +11,10 @@ const SingleFileUploader = () => {
   const [progress, setProgress] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [conversationId, setConversationId] = useState("");
+  const [message, setMessage] = useState("");
+  const [generatedResponse, setGeneratedResponse] = useState("");
+  const [generateStatus, setGenerateStatus] = useState<"initial" | "generating" | "success" | "fail">("initial");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -28,22 +34,21 @@ const SingleFileUploader = () => {
   };
 
   const handleUpload = async () => {
-    if (file) {
+    if (file && conversationId) {
       setStatus("uploading");
 
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("files", file);
 
       try {
-        const result = await fetch("https://httpbin.org/post", {
+        const result = await fetch(`${baseUrl}/api/upload?id=${encodeURIComponent(conversationId)}`, {
           method: "POST",
           body: formData,
         });
-        const data = await result.json();
-
-        console.log(data);
 
         if (result.ok) {
+          const data = await result.json();
+          console.log(data);
           let progressValue = 0;
           const interval = setInterval(() => {
             if (progressValue < 100) {
@@ -56,11 +61,64 @@ const SingleFileUploader = () => {
           }, 200);
         } else {
           setStatus("fail");
+          setModalMessage("Upload failed: " + result.statusText);
+          setShowModal(true);
         }
       } catch (error) {
         console.error(error);
         setStatus("fail");
+        setModalMessage("Upload failed: " + (error as Error).message);
+        setShowModal(true);
       }
+    } else if (!conversationId) {
+      setModalMessage("Please enter a conversation ID");
+      setShowModal(true);
+    }
+  };
+
+  const handleGenerate = async () => {
+    if (!conversationId) {
+      setModalMessage("Please enter a conversation ID");
+      setShowModal(true);
+      return;
+    }
+
+    setGenerateStatus("generating");
+
+    try {
+      const generateResponse = await fetch(`${baseUrl}/api/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: conversationId,
+          message: message
+        })
+      });
+
+      if (!generateResponse.ok) {
+        throw new Error(`Generation failed: ${generateResponse.status} ${generateResponse.statusText}`);
+      }
+
+      const responseData = await generateResponse.json();
+      setGenerateStatus("success");
+      
+      if (responseData.message) {
+        const formattedText = responseData.message
+          .split('\n')
+          .map((paragraph: string) => paragraph.trim())
+          .filter((paragraph: string) => paragraph.length > 0)
+          .join('\n\n');
+        setGeneratedResponse(formattedText);
+      } else {
+        setGeneratedResponse(JSON.stringify(responseData, null, 2));
+      }
+    } catch (error) {
+      setGenerateStatus("fail");
+      setModalMessage(`Generation failed: ${(error as Error).message}`);
+      setShowModal(true);
     }
   };
 
@@ -85,6 +143,16 @@ const SingleFileUploader = () => {
 
   return (
     <div className="home">
+      <div className="conversation-id">
+        <input
+          type="text"
+          placeholder="Enter conversation ID"
+          value={conversationId}
+          onChange={(e) => setConversationId(e.target.value)}
+          className="conversation-input"
+        />
+      </div>
+
       <input
         id="file"
         type="file"
@@ -146,6 +214,30 @@ const SingleFileUploader = () => {
               ? "Done"
               : "Upload"}
           </button>
+        </div>
+      )}
+
+      {status === "success" && (
+        <div className="generate-section">
+          <input
+            type="text"
+            placeholder="Enter message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="message-input"
+          />
+          <button
+            className="generate-btn"
+            onClick={handleGenerate}
+            disabled={generateStatus === "generating"}
+          >
+            {generateStatus === "generating" ? "Generating..." : "Generate"}
+          </button>
+          {generatedResponse && (
+            <div className="generated-response">
+              <pre>{generatedResponse}</pre>
+            </div>
+          )}
         </div>
       )}
 
