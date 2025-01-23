@@ -113,6 +113,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "admin" && password === "password") {
+      localStorage.setItem('username', username);
       navigate("/dashboard");
     } else {
       alert("Invalid credentials. Try again!");
@@ -194,11 +195,21 @@ const Login = () => {
 
 
 const Dashboard = () => {
+  const [username, setUsername] = useState('Student');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      const firstWord = storedUsername.split(' ')[0];
+      const capitalizedUsername = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
+      setUsername(capitalizedUsername);
+    }
+  }, []);
   return (
     <div className="home">
       <div className="content">
         <div className="header">
-          <h1>Welcome back, Student!</h1>
+          <h1>Welcome back, {username}!</h1>
           <div>
             <button className="button button-primary">New Task</button>
             <button className="button button-secondary" style={{ marginLeft: "10px" }}>
@@ -287,6 +298,36 @@ const Subjects = () => (
             <div className="progress" style={{width: '45%'}}></div>
           </div>
         </div>
+        <div className="subject-card">
+          <div className="subject-icon biology">
+            <i className='bx bx-dna'></i>
+          </div>
+          <h3>Biology</h3>
+          <p>Progress: 82%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '82%'}}></div>
+          </div>
+        </div>
+        <div className="subject-card">
+          <div className="subject-icon history">
+            <i className='bx bx-book-open'></i>
+          </div>
+          <h3>History</h3>
+          <p>Progress: 55%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '55%'}}></div>
+          </div>
+        </div>
+        <div className="subject-card">
+          <div className="subject-icon literature">
+            <i className='bx bx-pen'></i>
+          </div>
+          <h3>Literature</h3>
+          <p>Progress: 68%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '68%'}}></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -323,6 +364,24 @@ const Progress = () => (
             </div>
           </div>
           <p>23/25 Completed</p>
+        </div>
+        <div className="progress-card">
+          <h3>Quiz Scores</h3>
+          <div className="circular-progress">
+            <div className="inner-circle">
+              <span>78%</span>
+            </div>
+          </div>
+          <p>Average Score</p>
+        </div>
+        <div className="progress-card">
+          <h3>Attendance</h3>
+          <div className="circular-progress">
+            <div className="inner-circle">
+              <span>95%</span>
+            </div>
+          </div>
+          <p>19/20 Classes</p>
         </div>
       </div>
     </div>
@@ -362,6 +421,54 @@ const Quiz = () => (
             <span><i className='bx bx-question-mark'></i> 30 questions</span>
           </div>
           <button className="quiz-button">Review</button>
+        </div>
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>Chemistry</h3>
+            <span className="quiz-badge">New</span>
+          </div>
+          <p>Chapter 4: Organic Chemistry</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 40 mins</span>
+            <span><i className='bx bx-question-mark'></i> 20 questions</span>
+          </div>
+          <button className="quiz-button">Start Quiz</button>
+        </div>
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>Biology</h3>
+            <span className="quiz-badge">New</span>
+          </div>
+          <p>Chapter 2: Cell Biology</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 35 mins</span>
+            <span><i className='bx bx-question-mark'></i> 28 questions</span>
+          </div>
+          <button className="quiz-button">Start Quiz</button>
+        </div>
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>History</h3>
+            <span className="quiz-badge completed">Completed</span>
+          </div>
+          <p>World War II</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 50 mins</span>
+            <span><i className='bx bx-question-mark'></i> 35 questions</span>
+          </div>
+          <button className="quiz-button">Review</button>
+        </div>
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>Literature</h3>
+            <span className="quiz-badge">New</span>
+          </div>
+          <p>Shakespeare: Macbeth</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 45 mins</span>
+            <span><i className='bx bx-question-mark'></i> 25 questions</span>
+          </div>
+          <button className="quiz-button">Start Quiz</button>
         </div>
       </div>
     </div>
