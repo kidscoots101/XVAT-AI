@@ -48,7 +48,7 @@ body.dark {
 }
 
 .sidebar.close {
-  width: 78px;
+  width: 88px;
 }
 
 .sidebar .text {
@@ -100,6 +100,15 @@ body.dark {
   color: var(--sidebar-color);
 }
 
+body.dark.sidebar li a:hover{
+  background: var(--primary-color);
+}
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+  color: white;
+}
+
 .sidebar header {
   position: relative;
   padding-bottom: 20px;
@@ -113,22 +122,65 @@ body.dark {
 
 .sidebar header .logo-text {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .sidebar header .name {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 40px;
+  font-weight: 300;
   color: var(--text-color);
+  transition:var(--tran-04);
+}
+
+.sidebar header .name2 {
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--primary-color);
+  transition:var(--tran-04);
+}
+
+body.dark .sidebar header .name2 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #1877f2;
+  transition:var(--tran-04);
 }
 
 .sidebar header .profession {
-  font-size: 16px;
-  margin-top: -2px;
+  font-size: 40px;
+  font-weight:300;
   color: var(--text-color);
-  opacity: 0.7;
+  transition:var(--tran-04);
 }
 
+.sidebar.close header .name {
+  font-size: 27px;
+  font-weight: 300;
+  color: var(--text-color);
+  transition:var(--tran-04);
+}
+
+.sidebar.close header .name2 {
+  font-size: 27px;
+  font-weight: 500;
+  color: var(--primary-color);
+  transition:var(--tran-04);
+}
+
+body.dark .sidebar.close header .name2 {
+  font-size: 27px;
+  font-weight: 500;
+  color: #1877f2;
+  transition:var(--tran-04);
+}
+
+.sidebar.close header .profession {
+  font-size: 27px;
+  font-weight:300;
+  color: transparent;
+  opacity: 0.7;
+  transition:var(--tran-04);
+}
 .sidebar header .toggle {
   position: absolute;
   top: 50%;
@@ -148,6 +200,10 @@ body.dark {
 
 .sidebar.close header .toggle {
   transform: translateY(-50%);
+}
+
+body.dark .toggle{
+  color:white;
 }
 
 .sidebar .menu-bar {
@@ -202,6 +258,7 @@ body.dark {
   background: var(--toggle-color);
   transition: var(--tran-05);
 }
+
 
 .switch::before {
   content: '';

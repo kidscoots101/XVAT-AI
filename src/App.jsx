@@ -30,8 +30,9 @@ const Sidebar = () => {
       <header>
         <div className="image-text">
           <div className="logo-text">
-            <span className="name">XVAT</span>
-            <span className="profession">Student Portal</span>
+            <span className="name2">X</span>
+            <span className="name">VAT</span>
+            <span className="profession">.AI</span>
           </div>
         </div>
         <i
