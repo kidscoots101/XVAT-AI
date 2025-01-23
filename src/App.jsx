@@ -251,19 +251,120 @@ const Dashboard = () => {
 
 const Subjects = () => (
   <section className="home">
-    <div className="text">Subjects</div>
+    <div className="content">
+      <div className="header">
+        <h1>Your Subjects</h1>
+        <button className="button button-primary">Add Subject</button>
+      </div>
+      <div className="subjects-grid">
+        <div className="subject-card">
+          <div className="subject-icon mathematics">
+            <i className='bx bx-math'></i>
+          </div>
+          <h3>Mathematics</h3>
+          <p>Progress: 75%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '75%'}}></div>
+          </div>
+        </div>
+        <div className="subject-card">
+          <div className="subject-icon physics">
+            <i className='bx bx-atom'></i>
+          </div>
+          <h3>Physics</h3>
+          <p>Progress: 60%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '60%'}}></div>
+          </div>
+        </div>
+        <div className="subject-card">
+          <div className="subject-icon chemistry">
+            <i className='bx bx-flask'></i>
+          </div>
+          <h3>Chemistry</h3>
+          <p>Progress: 45%</p>
+          <div className="progress-bar">
+            <div className="progress" style={{width: '45%'}}></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 );
 
 const Progress = () => (
   <section className="home">
-    <div className="text">Progress</div>
+    <div className="content">
+      <div className="header">
+        <h1>Your Progress</h1>
+        <div className="progress-filters">
+          <select className="progress-select">
+            <option>This Week</option>
+            <option>This Month</option>
+            <option>This Year</option>
+          </select>
+        </div>
+      </div>
+      <div className="progress-stats">
+        <div className="progress-card">
+          <h3>Study Hours</h3>
+          <div className="circular-progress">
+            <div className="inner-circle">
+              <span>85%</span>
+            </div>
+          </div>
+          <p>Target: 40hrs/week</p>
+        </div>
+        <div className="progress-card">
+          <h3>Assignments</h3>
+          <div className="circular-progress">
+            <div className="inner-circle">
+              <span>92%</span>
+            </div>
+          </div>
+          <p>23/25 Completed</p>
+        </div>
+      </div>
+    </div>
   </section>
 );
 
 const Quiz = () => (
   <section className="home">
-    <div className="text">Quiz</div>
+    <div className="content">
+      <div className="header">
+        <h1>Available Quizzes</h1>
+        <div className="quiz-filters">
+          <input type="text" placeholder="Search quizzes..." className="quiz-search" />
+        </div>
+      </div>
+      <div className="quiz-grid">
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>Mathematics</h3>
+            <span className="quiz-badge">New</span>
+          </div>
+          <p>Chapter 5: Calculus</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 30 mins</span>
+            <span><i className='bx bx-question-mark'></i> 25 questions</span>
+          </div>
+          <button className="quiz-button">Start Quiz</button>
+        </div>
+        <div className="quiz-card">
+          <div className="quiz-header">
+            <h3>Physics</h3>
+            <span className="quiz-badge completed">Completed</span>
+          </div>
+          <p>Chapter 3: Mechanics</p>
+          <div className="quiz-meta">
+            <span><i className='bx bx-time'></i> 45 mins</span>
+            <span><i className='bx bx-question-mark'></i> 30 questions</span>
+          </div>
+          <button className="quiz-button">Review</button>
+        </div>
+      </div>
+    </div>
   </section>
 );
 
