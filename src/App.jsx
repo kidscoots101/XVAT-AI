@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
+import Progress from "./Progress";
+import Quiz from "./Quiz";
 import "./App.css";
 import img from './components/login_image.png';
-
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -49,7 +50,6 @@ const Sidebar = () => {
                 <span className="text nav-text">Dashboard</span>
               </Link>
             </li>
-
             <li className="nav-link">
               <Link to="/progress">
                 <i className="bx bx-bar-chart icon"></i>
@@ -188,7 +188,6 @@ const Login = () => {
   );
 };
 
-
 const Dashboard = () => {
   const [username, setUsername] = useState('Student');
 
@@ -254,244 +253,17 @@ const Dashboard = () => {
   );
 };
 
-
-const Progress = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [timeRange, setTimeRange] = useState('This Week');
-  
-  const progressData = {
-    studyHours: {
-      current: 34,
-      target: 40,
-      unit: 'hrs this week'
-    },
-    assignments: {
-      completed: 23,
-      total: 25,
-      unit: 'completed'
-    },
-    quizAverage: {
-      score: 78,
-      target: 85,
-      unit: 'average score'
-    },
-    dailyStudyHours: [
-      { day: 'Mon', hours: 8 },
-      { day: 'Tue', hours: 6 },
-      { day: 'Wed', hours: 7 },
-      { day: 'Thu', hours: 4 },
-      { day: 'Fri', hours: 5 },
-      { day: 'Sat', hours: 2 },
-      { day: 'Sun', hours: 2 }
-    ]
-  };
-
-  // Calculate max hours for proper scaling
-  const maxHours = Math.max(...progressData.dailyStudyHours.map(d => d.hours));
-
-  const ProgressCard = ({ title, value, total, unit, icon }) => (
-    <div className="progress-card">
-      <div className="card-icon">{icon}</div>
-      <div className="card-content">
-        <h2>{value}</h2>
-        <p className="card-unit">{unit}</p>
-        <div className="progress-bar">
-          <div 
-            className="progress-fill" 
-            style={{ width: `${(value / total) * 100}%` }}
-          />
-        </div>
-        <p className="card-target">Target: {total}</p>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="home">
-      <div className="content">
-        <div className="header">
-          <h1>Your Progress</h1>
-          <select 
-            value={timeRange} 
-            onChange={(e) => setTimeRange(e.target.value)}
-            className="time-range-select"
-          >
-            <option>This Week</option>
-            <option>This Month</option>
-            <option>This Year</option>
-          </select>
-        </div>
-
-        <div className="progress-tabs">
-          <button 
-            className={`tab ${activeTab === 'overview' ? 'active' : ''}`}
-            onClick={() => setActiveTab('overview')}
-          >
-            Overview
-          </button>
-          <button 
-            className={`tab ${activeTab === 'insights' ? 'active' : ''}`}
-            onClick={() => setActiveTab('insights')}
-          >
-            Insights
-          </button>
-        </div>
-
-        {activeTab === 'overview' && (
-          <>
-            <div className="progress-cards">
-              <ProgressCard
-                title="Study Hours"
-                value={progressData.studyHours.current}
-                total={progressData.studyHours.target}
-                unit={progressData.studyHours.unit}
-                icon="📚"
-              />
-              <ProgressCard
-                title="Assignments"
-                value={progressData.assignments.completed}
-                total={progressData.assignments.total}
-                unit={progressData.assignments.unit}
-                icon="✓"
-              />
-              <ProgressCard
-                title="Quiz Average"
-                value={progressData.quizAverage.score}
-                total={progressData.quizAverage.target}
-                unit={progressData.quizAverage.unit}
-                icon="📊"
-              />
-            </div>
-
-            <div className="daily-study-hours">
-              <h2>Daily Study Hours</h2>
-              <div className="graph">
-                {progressData.dailyStudyHours.map((day) => (
-                  <div className="bar-container" key={day.day}>
-                    <div 
-                      className="bar" 
-                      style={{ 
-                        height: `${(day.hours / maxHours) * 100}%`,
-                        minHeight: '4px' // Ensure very small values are still visible
-                      }}
-                      data-hours={`${day.hours}h`}
-                    />
-                    <span className="day-label">{day.day}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-
-        {activeTab === 'insights' && (
-          <div className="insights-content">
-            <h2>Coming Soon</h2>
-            <p>Detailed insights and analytics will be available soon.</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const Quiz = () => (
-  <section className="home">
-    <div className="content">
-      <div className="header">
-        <h1>Available Quizzes</h1>
-        <div className="quiz-filters">
-          <input type="text" placeholder="Search quizzes..." className="quiz-search" />
-        </div>
-      </div>
-      <div className="quiz-grid">
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>Mathematics</h3>
-            <span className="quiz-badge">New</span>
-          </div>
-          <p>Chapter 5: Calculus</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 30 mins</span>
-            <span><i className='bx bx-question-mark'></i> 25 questions</span>
-          </div>
-          <button className="quiz-button">Start Quiz</button>
-        </div>
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>Physics</h3>
-            <span className="quiz-badge completed">Completed</span>
-          </div>
-          <p>Chapter 3: Mechanics</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 45 mins</span>
-            <span><i className='bx bx-question-mark'></i> 30 questions</span>
-          </div>
-          <button className="quiz-button">Review</button>
-        </div>
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>Chemistry</h3>
-            <span className="quiz-badge">New</span>
-          </div>
-          <p>Chapter 4: Organic Chemistry</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 40 mins</span>
-            <span><i className='bx bx-question-mark'></i> 20 questions</span>
-          </div>
-          <button className="quiz-button">Start Quiz</button>
-        </div>
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>Biology</h3>
-            <span className="quiz-badge">New</span>
-          </div>
-          <p>Chapter 2: Cell Biology</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 35 mins</span>
-            <span><i className='bx bx-question-mark'></i> 28 questions</span>
-          </div>
-          <button className="quiz-button">Start Quiz</button>
-        </div>
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>History</h3>
-            <span className="quiz-badge completed">Completed</span>
-          </div>
-          <p>World War II</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 50 mins</span>
-            <span><i className='bx bx-question-mark'></i> 35 questions</span>
-          </div>
-          <button className="quiz-button">Review</button>
-        </div>
-        <div className="quiz-card">
-          <div className="quiz-header">
-            <h3>Literature</h3>
-            <span className="quiz-badge">New</span>
-          </div>
-          <p>Shakespeare: Macbeth</p>
-          <div className="quiz-meta">
-            <span><i className='bx bx-time'></i> 45 mins</span>
-            <span><i className='bx bx-question-mark'></i> 25 questions</span>
-          </div>
-          <button className="quiz-button">Start Quiz</button>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
 const AppLayout = () => (
-  <>
+  <div className="App">
     <Sidebar />
     <Routes>
+      <Route path="/" element={<Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/upload" element={<SingleFileUploader />} />
     </Routes>
-  </>
+  </div>
 );
 
 export default function App() {
