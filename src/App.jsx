@@ -31,13 +31,15 @@ const Sidebar = () => {
       <div className="menu-bar">
         <header>
           <div className="logo-text">
-              <p className="name"><span className="name2">X</span>VAT<span className="profession">.AI</span></p>            
+            <p className="name"><span className="name2">X</span>VAT<span className="profession">.AI</span></p>
           </div>
-          <i
-            className="bx bx-chevron-right toggle"
-            onClick={handleSidebarToggle}
-          ></i>
-        </header>
+        </div>
+        <i
+          className="bx bx-chevron-right toggle"
+          onClick={handleSidebarToggle}
+        ></i>
+      </header>
+      <div className="menu-bar">
         <div className="menu">
           <ul className="menu-links">
             <li className="nav-link">

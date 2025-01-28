@@ -98,7 +98,6 @@ body.dark .sidebar.close header .toggle {
 .sidebar header .logo-text {
   display: flex;
   flex-direction: row;
-  letter-spacing: 10px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
