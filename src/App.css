@@ -19,8 +19,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   background: var(--body-color);
   transition: var(--tran-05);
-  display: flex;
-  overflow-x: hidden;
 }
 
 body.dark {
@@ -43,6 +41,7 @@ body.dark {
   background: var(--sidebar-color);
   transition: var(--tran-05);
   z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar.close {
@@ -62,43 +61,106 @@ body.dark {
   opacity: 0;
 }
 
-.logo-image {
-  width: 100%;
-  height: auto;
-  padding: 15px;
-}
-
-.logo-container {
-  position: relative;
-  width: 100%;
+.sidebar header {
+  position:relative;
+  top:0;
+  left:0;
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
 }
 
-.corner-toggle {
+.sidebar header .toggle {
   position: absolute;
   top: 50%;
   right: -25px;
-  transform: translateY(-50%);
-  width: 25px;
+  transform: translateY(-50%) rotate(180deg);
   height: 25px;
+  width: 25px;
   background: var(--primary-color);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: var(--tran-03);
+  border-radius: 50%;
+  color: var(--sidebar-color);
+  transition: var(--tran-04);
 }
-
-.corner-toggle i {
-  color: white;
-  font-size: 18px;
-  transition: var(--tran-03);
-}
-
-.sidebar.close .corner-toggle i {
+.sidebar.close header .toggle {
   transform: rotate(180deg);
+  color: var(--text-color);
+  transform: translateY(-50%);
+}
+body.dark .sidebar.close header .toggle {
+  transform: rotate(180deg);
+  color: var(--text-color);
+  transform: translateY(-50%);
+}
+
+.sidebar header .logo-text {
+  display: flex;
+  flex-direction: row;
+  letter-spacing: 10px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sidebar header .name {
+  font-size: 40px;
+  font-weight: 200;
+  color: #1D1D1D;
+  transition:all 1.5s ease;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sidebar header .name2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary-color);
+  transition:all 1.5s ease;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body.dark .sidebar header .name2 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #1877f2;
+  transition:all 1.5s ease;
+}
+
+.sidebar header .profession {
+  font-size: 40px;
+  font-weight:200;
+  color: #1D1D1D;
+  transition:all 1.5s ease;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sidebar.close .logo-text{
+  letter-spacing:normal;
+}
+
+.sidebar.close header .name {
+  color:transparent;
+}
+
+.sidebar.close header .name2 {
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--primary-color);
+  padding-left:10px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  transition:all 0.3s ease;
+}
+
+body.dark .sidebar.close header .name2 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #1877f2;
+  transition:all 0.3s ease;
+}
+
+.sidebar.close header .profession {
+  color: transparent;
+  opacity:100%;
+  transition:all 0.3s ease;
 }
 
 .menu-bar {
@@ -156,79 +218,6 @@ body.dark {
   font-weight: 500;
 }
 
-.sidebar header {
-  position: relative;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.sidebar header .image-text {
-  display: flex;
-  align-items: center;
-}
-
-.sidebar header .logo-text {
-  display: flex;
-  flex-direction: row;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.sidebar header .name {
-  font-size: 40px;
-  font-weight: 300;
-  color: var(--text-color);
-  transition:var(--tran-04);
-}
-
-.sidebar header .name2 {
-  font-size: 40px;
-  font-weight: 500;
-  color: var(--primary-color);
-  transition:var(--tran-04);
-}
-
-body.dark .sidebar header .name2 {
-  font-size: 40px;
-  font-weight: 500;
-  color: #1877f2;
-  transition:var(--tran-04);
-}
-
-.sidebar header .profession {
-  font-size: 40px;
-  font-weight:300;
-  color: var(--text-color);
-  transition:var(--tran-04);
-}
-
-.sidebar.close header .name {
-  font-size: 27px;
-  font-weight: 300;
-  color: var(--text-color);
-  transition:var(--tran-04);
-}
-
-.sidebar.close header .name2 {
-  font-size: 27px;
-  font-weight: 500;
-  color: var(--primary-color);
-  transition:var(--tran-04);
-}
-
-body.dark .sidebar.close header .name2 {
-  font-size: 27px;
-  font-weight: 500;
-  color: #1877f2;
-  transition:var(--tran-04);
-}
-
-.sidebar.close header .profession {
-  font-size: 27px;
-  font-weight:300;
-  color: transparent;
-  opacity: 0.7;
-  transition:var(--tran-04);
-}
 
 .bottom-content {
   margin-top: auto;
@@ -300,12 +289,17 @@ body.dark .sidebar.close header .name2 {
   color: var(--text-color);
 }
 
-.mode .toggle-switch {
+.menu-bar .mode .toggle-switch {
   position: absolute;
-  right: 10px;
+  right: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 60px;
   cursor: pointer;
+  background: var(--primary-color-light);
+  border-radius: 6px;
 }
 
 .toggle-switch .switch {
@@ -317,16 +311,20 @@ body.dark .sidebar.close header .name2 {
 }
 
 .switch::before {
-  content: '';
+  content: "";
   position: absolute;
-  height: 16px;
-  width: 16px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   top: 50%;
-  left: 3px;
+  left: 5px;
   transform: translateY(-50%);
   background: var(--sidebar-color);
   transition: var(--tran-03);
+}
+
+body.dark .switch::before {
+  left: 24px;
 }
 
 .switch.switched::before {

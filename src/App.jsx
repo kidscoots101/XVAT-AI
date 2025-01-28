@@ -4,7 +4,6 @@ import SingleFileUploader from "./components/SingleFileUploader";
 import Progress from "./Progress";
 import Quiz from "./Quiz";
 import "./App.css";
-import logo from './logo.png';
 import Login from './login';
 
 const Sidebar = () => {
@@ -30,14 +29,17 @@ const Sidebar = () => {
   return (
     <nav className={`sidebar ${isSidebarOpen ? "" : "close"}`}>
       <div className="menu-bar">
+        <header>
+          <div className="logo-text">
+              <p className="name"><span className="name2">X</span>VAT<span className="profession">.AI</span></p>            
+          </div>
+          <i
+            className="bx bx-chevron-right toggle"
+            onClick={handleSidebarToggle}
+          ></i>
+        </header>
         <div className="menu">
           <ul className="menu-links">
-            <div className="logo-container">
-              <img src={logo} alt="XVAT AI Logo" className="logo-image" />
-              <div className="corner-toggle" onClick={handleSidebarToggle}>
-                <i className='bx bx-chevron-left'></i>
-              </div>
-            </div>
             <li className="nav-link">
               <Link to="/dashboard">
                 <i className="bx bxs-grid-alt icon"></i>

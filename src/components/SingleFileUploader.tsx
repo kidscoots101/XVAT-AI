@@ -5,9 +5,7 @@ const baseUrl = 'https://sairams-m1pro-system.tail4ef781.ts.net';
 
 const SingleFileUploader = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [status, setStatus] = useState<
-    "initial" | "uploading" | "success" | "fail"
-  >("initial");
+  const [status, setStatus] = useState<"initial" | "uploading" | "success" | "fail">("initial");
   const [progress, setProgress] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -15,6 +13,7 @@ const SingleFileUploader = () => {
   const [message, setMessage] = useState("");
   const [generatedResponse, setGeneratedResponse] = useState("");
   const [generateStatus, setGenerateStatus] = useState<"initial" | "generating" | "success" | "fail">("initial");
+  const [uploadedFiles, setUploadedFiles] = useState<{ name: string; size: number }[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -49,6 +48,7 @@ const SingleFileUploader = () => {
         if (result.ok) {
           const data = await result.json();
           console.log(data);
+
           let progressValue = 0;
           const interval = setInterval(() => {
             if (progressValue < 100) {
@@ -57,6 +57,7 @@ const SingleFileUploader = () => {
             } else {
               clearInterval(interval);
               setStatus("success");
+              setUploadedFiles((prev) => [...prev, { name: file.name, size: file.size }]);
             }
           }, 200);
         } else {
@@ -76,54 +77,7 @@ const SingleFileUploader = () => {
     }
   };
 
-  const handleGenerate = async () => {
-    if (!conversationId) {
-      setModalMessage("Please enter a conversation ID");
-      setShowModal(true);
-      return;
-    }
-
-    setGenerateStatus("generating");
-
-    try {
-      const generateResponse = await fetch(`${baseUrl}/api/generate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          id: conversationId,
-          message: message
-        })
-      });
-
-      if (!generateResponse.ok) {
-        throw new Error(`Generation failed: ${generateResponse.status} ${generateResponse.statusText}`);
-      }
-
-      const responseData = await generateResponse.json();
-      setGenerateStatus("success");
-      
-      if (responseData.message) {
-        const formattedText = responseData.message
-          .split('\n')
-          .map((paragraph: string) => paragraph.trim())
-          .filter((paragraph: string) => paragraph.length > 0)
-          .join('\n\n');
-        setGeneratedResponse(formattedText);
-      } else {
-        setGeneratedResponse(JSON.stringify(responseData, null, 2));
-      }
-    } catch (error) {
-      setGenerateStatus("fail");
-      setModalMessage(`Generation failed: ${(error as Error).message}`);
-      setShowModal(true);
-    }
-  };
-
   const handleDone = () => {
-    // Reset everything to initial state
     setFile(null);
     setStatus("initial");
     setProgress(0);
@@ -142,36 +96,49 @@ const SingleFileUploader = () => {
   };
 
   return (
-    <div className="home">
-      <div className="conversation-id">
-        <input
-          type="text"
-          placeholder="Enter conversation ID"
-          value={conversationId}
-          onChange={(e) => setConversationId(e.target.value)}
-          className="conversation-input"
-        />
+    <section className="home">
+      <div className="content">
+      <div className="top">
+        <h1>Upload Files</h1>
+        <h3>Upload Documents and use our AI to study more effectively.</h3>
       </div>
+      <div className="rowContent">
+        <input
+          id="file"
+          type="file"
+          onChange={handleFileChange}
+          className="dotted-file-button"
+          style={{ display: "none" }}
+        />
 
-      <input
-        id="file"
-        type="file"
-        onChange={handleFileChange}
-        className="dotted-file-button"
-        style={{ display: "none" }}
-      />
-
-      {!file && status !== "uploading" && (
-        <button
-          className="file-btn"
-          onClick={() => document.getElementById("file")?.click()}
-        >
-          <i className="bx bx-export"></i>
-          <text className="upload-text">Upload File</text>
-          <text className="file-text">Acceptable file type: .pdf</text>
-        </button>
-      )}
-
+        {!file && status !== "uploading" && (
+          <button
+            className="file-btn"
+            onClick={() => document.getElementById("file")?.click()}
+          >
+            <i className="bx bxs-folder-open"></i>
+            <p className="upload-text">Browse Files</p>
+            <p className="file-text">Acceptable file type: .pdf</p>
+          </button>
+        )}
+        {uploadedFiles.length > 0 ? (
+            <div className="uploaded-files">
+              <p className="filesHeading">Uploaded Files</p>
+              <ul>
+                {uploadedFiles.map((uploadedFile, index) => (
+                  <li key={index}>
+                    {uploadedFile.name} - {formatFileSize(uploadedFile.size)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div className="uploaded-files">
+              <p className="filesHeading">Uploaded Files</p>
+              <p className="noFile">No files uploaded</p>
+            </div>
+          )}
+        </div>
       {file && (
         <div className="second">
           <div className="file-card">
@@ -216,35 +183,20 @@ const SingleFileUploader = () => {
           </button>
         </div>
       )}
-
-      {status === "success" && (
-        <div className="generate-section">
-          <input
-            type="text"
-            placeholder="Enter message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="message-input"
-          />
-          <button
-            className="generate-btn"
-            onClick={handleGenerate}
-            disabled={generateStatus === "generating"}
-          >
-            {generateStatus === "generating" ? "Generating..." : "Generate"}
-          </button>
-          {generatedResponse && (
-            <div className="generated-response">
-              <pre>{generatedResponse}</pre>
-            </div>
-          )}
-        </div>
-      )}
-
+      <div className="conversation-id">
+        <input
+          type="text"
+          placeholder="Enter conversation ID"
+          value={conversationId}
+          onChange={(e) => setConversationId(e.target.value)}
+          className="conversation-input"
+        />
+      </div>
       {showModal && (
         <Modal message={modalMessage} onClose={() => setShowModal(false)} />
       )}
-    </div>
+      </div>
+    </section>
   );
 };
 
@@ -265,13 +217,7 @@ const Result = ({ status }: { status: string }) => {
   }
 };
 
-const Modal = ({
-  message,
-  onClose,
-}: {
-  message: string;
-  onClose: () => void;
-}) => {
+const Modal = ({ message, onClose }: { message: string; onClose: () => void }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
