@@ -31,7 +31,9 @@ const Sidebar = () => {
       <div className="menu-bar">
         <header>
           <div className="logo-text">
-            <p className="name"><span className="name2">X</span>VAT<span className="profession">.AI</span></p>
+            <span className="name2">X</span>
+            <span className="name">VAT</span>
+            <span className="profession">.AI</span>
           </div>
         </div>
         <i
