@@ -76,13 +76,13 @@ body.dark {
   transform: translateY(-50%) rotate(180deg);
   height: 25px;
   width: 25px;
-  background: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   color: var(--sidebar-color);
   transition: var(--tran-04);
+  background: transparent;
 }
 .sidebar.close header .toggle {
   transform: rotate(180deg);
