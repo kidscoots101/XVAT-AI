@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from './logo.png';
 import './login.css';
 
 const Login = () => {
@@ -27,7 +26,7 @@ const Login = () => {
     <div className="login-page">
       <header className="nav-header">
         <div className="logo">
-          <img src={logo} alt="XVAT.AI Logo" />
+          <img src='/logo.png' alt="XVAT.AI Logo" />
         </div>
         <nav>
           <a href="#home">home</a>
