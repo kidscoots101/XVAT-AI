@@ -128,7 +128,6 @@ const Progress = () => {
         <button onClick={handleStartStopTimer}>
           {isTimerRunning ? 'Stop' : 'Start'}
         </button>
-        <button onClick={handleResetTimer}>Reset</button>
       </div>
 
         {activeTab === 'overview' && (
