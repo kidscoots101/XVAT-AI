@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./quiz.css";
+import "./Quiz.css";
 
 const baseUrl = 'https://sairams-m1pro-system.tail4ef781.ts.net';
 

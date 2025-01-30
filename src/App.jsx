@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
 import Progress from "./Progress";
-import Quiz from "./QUIZ";
+import Quiz from "./Quiz";
 import "./App.css";
 import Login from './login';
 
