@@ -9,6 +9,8 @@ import Login from './components/login';
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [task, setTask] = useState({ name: "Math Assignment", dueDate: "2 days" });
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen((prevState) => !prevState);
@@ -16,6 +18,40 @@ const Sidebar = () => {
 
   const handleDarkModeToggle = () => {
     setIsDarkMode((prevState) => !prevState);
+  };
+
+  const handleNewTaskClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleTaskSubmit = (taskName, dueDate) => {
+    const selectedDate = new Date(dueDate);
+    const currentDate = new Date();
+
+    if (selectedDate <= currentDate) {
+      alert("Please select a future date.");
+      return;
+    }
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) {
+      alert("Please enter a valid date in YYYY-MM-DD format.");
+      return;
+    }
+
+    setTask({ name: taskName, dueDate: dueDate });
+    setIsModalOpen(false);
+  };
+
+  const getMinDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
   useEffect(() => {

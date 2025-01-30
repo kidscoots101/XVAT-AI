@@ -1176,7 +1176,7 @@ body.dark .day-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
 }
@@ -1221,7 +1221,7 @@ body.dark .day-label {
   cursor: pointer;
   font-size: 16px;
   transition: var(--tran-03);
-  margin-left: 100px; /* Add spacing between buttons */
+  margin-left: 10px; /* Add spacing between buttons */
 }
 
 .modal-footer .button-primary {

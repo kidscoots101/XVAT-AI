@@ -175,6 +175,82 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.timer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.timer-display {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.timer button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--button-primary-bg);
+  color: var(--button-text-color);
+  transition: var(--tran-03);
+}
+
+.timer button:hover {
+  background-color: darken(var(--button-primary-bg), 10%);
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background-color: var(--sidebar-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.bar-graph {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 30px;
+  background-color: var(--primary-color-light);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.bar-fill {
+  background-color: var(--primary-color);
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.bar-label {
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
 /* Dark mode adjustments */
 body.dark .progress-card,
 body.dark .daily-study-hours,
