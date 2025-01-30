@@ -266,6 +266,61 @@ body.dark .nav-link:hover .text{
   list-style: none;
 }
 
+.profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--tran-03);
+}
+
+.profile:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.profile:hover .profile-name,
+.profile:hover .profile-role,
+.profile:hover .profile-icon{
+  color:white;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.profile-icon {
+  font-size:40px;
+  padding:0 5px;
+  justify-content: flex-start;
+  color: var(--text-color);
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.profile-role {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Hide profile details when sidebar is closed */
+.sidebar.close .profile-details {
+  display: none;
+}
 .bottom-content li a {
   display: flex;
   align-items: center;
@@ -281,7 +336,7 @@ body.dark .nav-link:hover .text{
 }
 
 .bottom-content li a:hover .icon,
-bottom-content li a:hover .text {
+.bottom-content li a:hover .text {
   color: var(--sidebar-color);
 }
 

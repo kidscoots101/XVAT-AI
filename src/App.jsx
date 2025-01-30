@@ -7,11 +7,21 @@ import "./App.css";
 import Login from './components/login';
 
 const Sidebar = () => {
+  const [username, setUsername] = useState('Student');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [task, setTask] = useState({ name: "Math Assignment", dueDate: "2 days" });
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      const firstWord = storedUsername.split(' ')[0];
+      const capitalizedUsername = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
+      setUsername(capitalizedUsername);
+    }
+  }, []);
+  
   const handleSidebarToggle = () => {
     setIsSidebarOpen((prevState) => !prevState);
   };
@@ -103,8 +113,19 @@ const Sidebar = () => {
           </ul>
         </div>
         <div className="bottom-content">
+        <li className="profile">
+            <Link to="/profile" className="profile-link">
+              <i class="bx bxs-user-circle profile-icon"></i>
+              {isSidebarOpen && (
+                <div className="profile-details">
+                  <span className="profile-name">{username}</span>
+                  <span className="profile-role">Student at SST</span>
+                </div>
+              )}
+            </Link>
+          </li>
           <li>
-            <Link to="/">
+            <Link className="logout-container" to="/">
               <i className="bx bx-log-out icon"></i>
               <span className="text nav-text">Logout</span>
             </Link>
