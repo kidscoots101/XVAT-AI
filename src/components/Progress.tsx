@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Progress.css';
-import { useRef } from 'react';
 
 const Progress = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -91,7 +90,7 @@ const Progress = () => {
   return (
     <div className="home">
       <div className="content">
-        <div className="header">
+        <div className="topsies">
           <h1>Your Progress</h1>
           <select 
             value={timeRange} 

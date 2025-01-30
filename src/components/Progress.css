@@ -1,14 +1,67 @@
+:root {
+  --body-color: #f0f2f5;
+  --sidebar-color: #ffffff;
+  --primary-color: #1877f2;
+  --primary-color-light: #e7f3ff;
+  --toggle-color: #dddddd;
+  --text-color: #050505;
+  --button-primary-bg: #007bff;
+  --button-secondary-bg: #6c757d;
+  --button-text-color: white;
+  --modal-bg: white;
+  --modal-text-color: #050505;
+  --modal-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background: var(--body-color);
+  transition: var(--tran-05);
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #e4e6eb;
+  --button-primary-bg: #0056b3;
+  --button-secondary-bg: #495057;
+  --modal-bg: #242526;
+  --modal-text-color: #e4e6eb;
+  --modal-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.home{
+  background: var(--body-color);
+  min-height: max-content;
+}
+
 .content {
   padding: 20px;
   max-width: 1200px;
+  background: var(--body-color); 
   margin: 0 auto;
 }
 
-.header {
+.topsies {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+}
+
+.topsies h1{
+  font-size: 2.5rem; 
+  margin-bottom:30px;
+  color: var(--primary-color);
 }
 
 .time-range-select {
