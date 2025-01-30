@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
-import Progress from "./Progress";
-import Quiz from "./Quiz";
+import Progress from "./components/Progress";
+import Quiz from "./components/Quiz";
 import "./App.css";
-import Login from './login';
+import Login from './components/login';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
