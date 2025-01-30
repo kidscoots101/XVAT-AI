@@ -33,10 +33,10 @@ const Sidebar = () => {
           <div className="logo-text">
             <p className="name2">X<span className="name">VAT</span><span className="profession">.AI</span></p>
           </div>
-        <i
-          className="bx bx-chevron-right toggle"
-          onClick={handleSidebarToggle}
-        ></i>
+          <i
+            className="bx bx-chevron-right toggle"
+            onClick={handleSidebarToggle}
+          ></i>
         </header>
         <div className="menu">
           <ul className="menu-links">
@@ -92,6 +92,13 @@ const Sidebar = () => {
 
 const Dashboard = () => {
   const [username, setUsername] = useState('Student');
+  const [assignments, setAssignments] = useState([
+    { name: "Physics Lab Report", due: "Due Tomorrow: 11:59 PM" },
+    { name: "Economics Presentation", due: "Due in 3 days: 3:30 PM" }
+  ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [taskName, setTaskName] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -101,13 +108,36 @@ const Dashboard = () => {
       setUsername(capitalizedUsername);
     }
   }, []);
+
+  const handleNewTaskClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setTaskName("");
+    setDueDate("");
+  };
+
+  const handleTaskSubmit = (e) => {
+    e.preventDefault();
+    if (taskName && dueDate) {
+      const newAssignment = {
+        name: taskName,
+        due: `Due on: ${new Date(dueDate).toLocaleDateString()}`
+      };
+      setAssignments([...assignments, newAssignment]);
+      handleModalClose();
+    }
+  };
+
   return (
     <div className="home">
       <div className="content">
         <div className="header">
           <h1>Welcome back, {username}!</h1>
           <div>
-            <button className="button button-primary">New Task</button>
+            <button className="button button-primary" onClick={handleNewTaskClick}>New Task</button>
             <button className="button button-secondary" style={{ marginLeft: "10px" }}>
               Add to Calendar
             </button>
@@ -137,20 +167,51 @@ const Dashboard = () => {
         </div>
         <div className="assignments">
           <h2>Current Assignments</h2>
-          <div className="assignment-card">
-            <div>Physics Lab Report</div>
-            <div>Due Tomorrow: 11:59 PM</div>
-          </div>
-          <div className="assignment-card">
-            <div>Economics Presentation</div>
-            <div>Due in 3 days: 3:30 PM</div>
-          </div>
+          {assignments.map((assignment, index) => (
+            <div className="assignment-card" key={index}>
+              <div>{assignment.name}</div>
+              <div>{assignment.due}</div>
+            </div>
+          ))}
         </div>
         <div className="analytics">
           <h2>Study Analytics</h2>
           <p>[Interactive Chart Here]</p>
         </div>
       </div>
+
+      {/* Modal for New Task */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Add New Task</h2>
+            <form onSubmit={handleTaskSubmit}>
+              <div className="form-group">
+                <label>Task Name</label>
+                <input
+                  type="text"
+                  value={taskName}
+                  onChange={(e) => setTaskName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Due Date</label>
+                <input
+                  type="date"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="modal-buttons">
+                <button type="button" onClick={handleModalClose}>Cancel</button>
+                <button type="submit">Add Task</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -170,10 +231,10 @@ const AppLayout = () => (
 
 export default function App() {
   return (
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/*" element={<AppLayout />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/*" element={<AppLayout />} />
+    </Routes>
   );
 }

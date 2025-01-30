@@ -6,6 +6,12 @@
   --primary-color-light: #e7f3ff;
   --toggle-color: #dddddd;
   --text-color: #050505;
+  --button-primary-bg: #007bff;
+  --button-secondary-bg: #6c757d;
+  --button-text-color: white;
+  --modal-bg: white;
+  --modal-text-color: #050505;
+  --modal-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
   --tran-04: all 0.4s ease;
@@ -27,7 +33,12 @@ body.dark {
   --primary-color: #3a3b3c;
   --primary-color-light: #3a3b3c;
   --toggle-color: #fff;
-  --text-color: #ccc;
+  --text-color: #e4e6eb;
+  --button-primary-bg: #0056b3;
+  --button-secondary-bg: #495057;
+  --modal-bg: #242526;
+  --modal-text-color: #e4e6eb;
+  --modal-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
 }
 
 /* Sidebar Styles */
@@ -270,7 +281,7 @@ body.dark .nav-link:hover .text{
 }
 
 .bottom-content li a:hover .icon,
-.bottom-content li a:hover .text {
+bottom-content li a:hover .text {
   color: var(--sidebar-color);
 }
 
@@ -627,27 +638,25 @@ body.dark .home .text {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: var(--tran-03);
 }
 
 .button-primary {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
-.button-primary:hover {
-  background-color: #1664d6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: var(--button-primary-bg);
+  color: var(--button-text-color);
 }
 
 .button-secondary {
-  background-color: #f0f0f0;
-  color: var(--text-color);
+  background-color: var(--button-secondary-bg);
+  color: var(--button-text-color);
+}
+
+.button-primary:hover {
+  background-color: darken(var(--button-primary-bg), 10%);
 }
 
 .button-secondary:hover {
-  background-color: #e0e0e0;
+  background-color: darken(var(--button-secondary-bg), 10%);
 }
 
 /* Progress Page Styles */
@@ -1144,4 +1153,91 @@ body.dark .card-unit,
 body.dark .card-target,
 body.dark .day-label {
   color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--modal-bg);
+  color: var(--modal-text-color);
+  padding: 20px;
+  box-shadow: var(--modal-shadow);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  transition: var(--tran-05);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-close {
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.modal-body input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--tran-03);
+  margin-left: 100px; /* Add spacing between buttons */
+}
+
+.modal-footer .button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-text-color);
+}
+
+.modal-footer .button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-text-color);
+}
+
+.modal-footer .button-primary:hover {
+  background-color: darken(var(--button-primary-bg), 10%);
+}
+
+.modal-footer .button-secondary:hover {
+  background-color: darken(var(--button-secondary-bg), 10%);
 }
