@@ -1,0 +1,56 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-left: 250px; /* Adjust this value based on your sidebar width */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 100%; /* Make the container take the full width */
+  box-sizing: border-box;
+}
+
+.profile-card {
+  background-color: var(--sidebar-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%; /* Make the card take the full width */
+  max-width: 800px; /* Optional: Set a max width for better readability */
+  margin: 0 20px; /* Add some margin for spacing */
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.profile-card h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.profile-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.sign-out-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.sign-out-button:hover {
+  background-color: #c9302c;
+}

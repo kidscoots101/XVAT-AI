@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
 import Progress from "./components/Progress";
 import Quiz from "./components/Quiz";
+import Profile from "./components/profile"; // Import the Profile component
 import "./App.css";
 import Login from './components/login';
 
@@ -282,6 +283,7 @@ const AppLayout = () => (
       <Route path="/progress" element={<Progress />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/upload" element={<SingleFileUploader />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   </div>
 );
