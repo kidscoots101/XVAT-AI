@@ -57,13 +57,16 @@ const Login = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      
       localStorage.setItem('username', user.displayName || user.email || 'unknown');
+      localStorage.setItem('profilePic', user.photoURL || ''); // Store profile pic
+  
       navigate("/dashboard");
     } catch (error) {
       console.error("Error during Google login:", error);
       alert("Failed to login with Google. Try again!");
     }
-  };
+  };  
 
   return (
     <div className="login-page">

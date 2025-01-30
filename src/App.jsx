@@ -9,6 +9,7 @@ import Login from './components/login';
 
 const Sidebar = () => {
   const [username, setUsername] = useState('Student');
+  const [profilePic, setProfilePic] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,10 +17,16 @@ const Sidebar = () => {
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
+    const storedProfilePic = localStorage.getItem('profilePic');
+  
     if (storedUsername) {
       const firstWord = storedUsername.split(' ')[0];
       const capitalizedUsername = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
       setUsername(capitalizedUsername);
+    }
+  
+    if (storedProfilePic) {
+      setProfilePic(storedProfilePic);
     }
   }, []);
   
@@ -116,7 +123,11 @@ const Sidebar = () => {
         <div className="bottom-content">
         <li className="profile">
             <Link to="/profile" className="profile-link">
-              <i class="bx bxs-user-circle profile-icon"></i>
+              {profilePic ? (
+                  <img src={profilePic} alt="Profile" className="profile-pic" />
+                ) : (
+                  <i className="bx bxs-user-circle profile-icon"></i> // Default icon
+                )}
               {isSidebarOpen && (
                 <div className="profile-details">
                   <span className="profile-name">{username}</span>
