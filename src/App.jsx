@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import SingleFileUploader from "./components/SingleFileUploader";
-import Progress from "./components/Progress";
 import Quiz from "./components/Quiz";
 import Profile from "./components/profile"; // Import the Profile component
 import "./App.css";
 import Login from './components/login';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts'; // Import recharts components
 
 const Sidebar = () => {
   const [username, setUsername] = useState('Student');
@@ -101,12 +101,6 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-link">
-              <Link to="/progress">
-                <i className="bx bx-bar-chart icon"></i>
-                <span className="text nav-text">Progress</span>
-              </Link>
-            </li>
-            <li className="nav-link">
               <Link to="/quiz">
                 <i className="bx bx-message-alt-edit icon"></i>
                 <span className="text nav-text">Quiz</span>
@@ -121,19 +115,19 @@ const Sidebar = () => {
           </ul>
         </div>
         <div className="bottom-content">
-        <li className="profile">
+          <li className="profile">
             <Link to="/profile" className="profile-link">
               {profilePic ? (
-                  <img src={profilePic} alt="Profile" className="profile-pic" />
-                ) : (
-                  <i className="bx bxs-user-circle profile-icon"></i> // Default icon
-                )}
-              {isSidebarOpen && (
+                <img src={profilePic} alt="Profile" className="profile-pic" />
+              ) : (
+                <i className="bx bxs-user-circle profile-icon"></i>
+              )}
+              {isSidebarOpen ? (
                 <div className="profile-details">
                   <span className="profile-name">{username}</span>
                   <span className="profile-role">Student at SST</span>
                 </div>
-              )}
+              ) : null}
             </Link>
           </li>
           <li>
@@ -200,6 +194,22 @@ const Dashboard = () => {
     }
   };
 
+  const data = [
+    { name: 'Week 1', studyHours: 10 },
+    { name: 'Week 2', studyHours: 15 },
+    { name: 'Week 3', studyHours: 20 },
+    { name: 'Week 4', studyHours: 25 },
+  ];
+
+  const pieData = [
+    { name: 'Week 1', value: 10 },
+    { name: 'Week 2', value: 15 },
+    { name: 'Week 3', value: 20 },
+    { name: 'Week 4', value: 25 },
+  ];
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
   return (
     <div className="home">
       <div className="content">
@@ -243,9 +253,41 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        <div className="analytics">
-          <h2>Study Analytics</h2>
-          <p>[Interactive Chart Here]</p>
+        <div className="charts">
+          <h2>Study Hours Over Time</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="studyHours" stroke="#8884d8" activeDot={{ r: 8 }} />
+            </LineChart>
+          </ResponsiveContainer>
+          <h2>Study Hours Bar Chart</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="studyHours" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+          <h2>Study Hours Pie Chart</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
@@ -291,7 +333,6 @@ const AppLayout = () => (
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/progress" element={<Progress />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/upload" element={<SingleFileUploader />} />
       <Route path="/profile" element={<Profile />} />
