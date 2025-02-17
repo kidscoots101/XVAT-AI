@@ -224,24 +224,61 @@ const Dashboard = () => {
         </div>
         <div className="stats-container">
           <div className="stat-card stat-card1">
-            <div className="stat-title">Upcoming Deadlines</div>
+            <div className="hexagon">
+              <i class='bx bxs-graduation'></i>
+            </div>
+            <div className="stat-title">Nigger</div>
             <div className="stat-value">4</div>
-            <div>Next: Math Assignment (2 days)</div>
           </div>
           <div className="stat-card stat-card2">
-            <div className="stat-title">Study Hours</div>
+            <div className="hexagon">
+              <i class='bx bxs-book-content'></i>
+            </div>
+            <div className="stat-title">Nigger</div>
             <div className="stat-value">50</div>
-            <div>+5 from last week</div>
           </div>
           <div className="stat-card stat-card3">
-            <div className="stat-title">Monthly Budget</div>
+            <div className="hexagon">
+              <i class='bx bx-time'></i>
+            </div>
+            <div className="stat-title">Nigger</div>
             <div className="stat-value">$1200</div>
-            <div>$300 remaining</div>
           </div>
           <div className="stat-card stat-card4">
-            <div className="stat-title">Study Streak</div>
+            <div className="hexagon">
+              <i class='bx bxs-file-pdf'></i>
+            </div>
+            <div className="stat-title">Nigger</div>
             <div className="stat-value">7 days</div>
-            <div>Keep it up!</div>
+          </div>
+        </div>
+        <div className="charts">
+          <div className="chart1">
+            <h2>Statistics</h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="studyHours" stroke="#8884d8" activeDot={{ r: 8 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div classname="chart2">
+              <h2>Study Hours Pie Chart</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
           </div>
         </div>
         <div className="assignments">
@@ -252,42 +289,6 @@ const Dashboard = () => {
               <div>{assignment.due}</div>
             </div>
           ))}
-        </div>
-        <div className="charts">
-          <h2>Study Hours Over Time</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="studyHours" stroke="#8884d8" activeDot={{ r: 8 }} />
-            </LineChart>
-          </ResponsiveContainer>
-          <h2>Study Hours Bar Chart</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="studyHours" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
-          <h2>Study Hours Pie Chart</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
-                {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
         </div>
       </div>
 
